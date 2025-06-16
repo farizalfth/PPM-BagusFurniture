@@ -1,0 +1,46 @@
+{% extends 'layouts/base.html' %}
+{% block title %}Detail Product{% endblock %}
+
+{% block content %}
+<section>
+    <div class="container" style="margin-top: 150px;">
+        <div class="row border border-2 rounded">
+            <div class="col-12 col-md-6">
+                <div class="p-2">
+                    <div class="text-center">
+                        <img src="{{ detail[2] }}" class="rounded" alt="background hp" width="70%">
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 d-flex">
+                <div class="p-2 w-100">
+                    <div class="title mt-4">
+                        <h3>{{ detail[1] }}</h3>
+                        <h5>Harga : Rp.{{ detail[3] | rupiah }}</h5>
+                        <p>Stok  : {{'Tidak Tersedia' if produk[5] == True else 'Tersedia'}}</p>
+                        <p>Detail</p>
+                        <p class="lh-1">{{ detail[6] }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>    
+    </div>
+</section>
+<!-- PRODUK LAINNYA -->
+<section>
+    <div style="margin-top: 100px;">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h2 class="mb-3">Produk Lainnya</h2>
+                    <hr class="mb-3" style="color: dark;">
+                </div>
+            </div>    
+        </div>
+    </div>
+</section>
+<!-- CARD PRODUK -->
+<section>
+    {% include 'layouts/component/card.html' %}
+</section>
+{% endblock %}

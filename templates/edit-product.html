@@ -1,0 +1,49 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %} Halaman Edit Product {% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            <h3 style="padding-top: 100px;">Edit Product</h3>
+            <form action="/update-product/{{produk[0]}}" method="POST">
+                <input type="hidden" name="csrf_token" value="{{csrf_token}}">
+            <div class="mb-3">
+                <label class="mb-2" for="form-label">Nama Produk</label>
+                <input type="text" value="{{produk[1]}}" name="name_product" class="form-control "
+                    placeholder="Masukan Nama Produk">
+            </div>
+            <div class="mb-3">
+                <label class="mb-2" for="form-label">Link Gambar</label>
+                <input type="text" value="{{produk[2]}}" name="image_url" class="form-control" placeholder="Masukan Link Gambar">
+            </div>
+            <div class="mb-3">
+                <label class="mb-2" for="form-label">Harga</label>
+                <input type="number" value="{{produk[3]}}" name="price" class="form-control" placeholder="Masukan Harga">
+            </div>
+            <div class="mb-3">
+                <label class="mb-2" for="form-label">Kategory</label>
+                <select name="category" class="form-control">
+                    <option selected>{{produk[4]}}</option>
+                    {% for kategori in category %}
+                    <option value="{{ kategori[0] }}">{{ kategori[1] }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="mb-2" for="form-label">Stok</label>
+                <select name="in_stok" class="form-control">
+                    <option selected>{{produk[5]}}</option>
+                    <option value="1">Tersedia</option>
+                    <option value="0">Tidak Tersedia</option>
+                </select>
+            </div>
+            <div>
+                <button type="submit" class="btn btn-primary">Save</button> 
+            </div>
+        </form>
+        </div>
+    </div>
+
+{% endblock %}

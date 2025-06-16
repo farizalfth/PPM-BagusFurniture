@@ -1,0 +1,66 @@
+{% extends 'layouts/base.html' %}
+{% block title %}About Us{% endblock %}
+{% block content %}
+<section>
+    <div class="container" style="margin-top: 140px;">
+        <div class="row">
+            <div class="col">
+                <!-- BAG -1  -->
+                <div class="d-flex">
+                    <div class="p-2 flex-shrink-1">
+                        <div class="text-end pt-5 pe-5">
+                            <img src="https://th.bing.com/th/id/OIP.IzeZEXbTzaukFCYnV7RUcwHaHa?w=174&h=180&c=7&r=0&o=5&dpr=1.5&pid=1.7" class="rounded" alt="Luxury Watch">
+                        </div> 
+                    </div>
+                    <div class="p-2 w-100">
+                        <h2 style="color: #d4af37;">Luxury Watch Store</h2>
+                        <p>Kami adalah penyedia jam tangan mewah terpercaya untuk pelanggan yang mencari eksklusivitas dan prestise. 
+                            Berdiri sejak tahun 2024, Luxury Watch Store berkomitmen untuk menyediakan koleksi jam tangan mewah dari merek-merek ternama 
+                            dengan kualitas terbaik, harga kompetitif, serta pelayanan yang ramah dan profesional.
+                        </p>
+                        <h2 style="color: #d4af37;">Visi</h2> 
+                        <p>Menjadi pemimpin di industri jam tangan mewah dengan menyediakan pengalaman belanja yang eksklusif, 
+                            nyaman, dan terpercaya bagi semua pelanggan kami.
+                        </p>   
+                        <h2 style="color: #d4af37;">Misi</h2>
+                        <p> Memberikan produk jam tangan terbaik dari merek-merek ternama dengan kualitas terbaik.
+                            Menyediakan layanan pelanggan yang cepat, responsif, dan memuaskan.
+                            Menyediakan koleksi eksklusif yang mendukung gaya hidup mewah pelanggan kami.
+                        </p>
+                    </div>
+                </div>
+                <!-- BAG - 2 -->
+                <div class="d-flex">
+                    <div class="p-2 w-100">
+                        <h2 style="color: #d4af37;">Apa yang Membuat Kami Berbeda?</h2>
+                        <table class="table table-hover">
+                            <tbody>
+                                <tr>
+                                    <td>Kami menyediakan koleksi jam tangan mewah dari merek-merek ternama seperti Rolex, Patek Philippe, dan Richard Mille.</td>
+                                </tr>
+                                <tr>
+                                    <td>Setiap produk yang kami tawarkan dijamin 100% asli dengan sertifikat keaslian dan garansi resmi.</td>
+                                </tr>
+                                <tr>
+                                    <td>Dengan proses belanja yang mudah, metode pembayaran fleksibel, dan pengiriman aman, kami memberikan kenyamanan di setiap langkah.</td>
+                                </tr>
+                                <tr>
+                                    <td>Tim layanan pelanggan kami siap membantu Anda dengan layanan personal dan eksklusif untuk setiap kebutuhan Anda.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="p-2 flex-shrink-1">
+                        <div class="text-end pt-5 pe-5">
+                            <img src="https://th.bing.com/th/id/OIP.A-H-VtYNT5cBUPpwM6lPCgHaHa?w=202&h=202&c=7&r=0&o=5&dpr=1.5&pid=1.7" class="rounded" alt="Luxury Watch">
+                        </div> 
+                    </div>
+                </div>
+                <div class="service">
+                    {% include 'layouts/component/service.html' %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

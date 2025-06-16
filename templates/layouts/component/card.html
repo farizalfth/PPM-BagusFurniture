@@ -1,0 +1,26 @@
+<div class="container">
+    <div class="row">
+        {% for produk in produk %}
+        <div class="col-12 col-md-4">
+            <div class="card shadow p-3 mb-5 bg-body-tertiary rounded" style="width: 100%;">
+                <div class="row">
+                    <div class="col-6"> 
+                        <a href="/detail-produk/{{ produk[0] }}" style="text-decoration: none; color: black;">
+                        <img src="{{ produk[2] }}" class="card-img-top" alt="">
+                        </a>
+                    </div>
+                    <div class="col-6 d-flex align-items-center">
+                        <div class="title">
+                            <a href="/detail-produk/{{ produk[0] }}" style="text-decoration: none; color: black;">
+                            <h4 class="card-title">{{ produk[6] }}</h4>
+                            <h6 class="card-title">{{ produk[1] }}</h6>
+                            <p class="card-text">Rp. {{ produk[3] | rupiah }}</p>
+                        </div>
+                    </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
