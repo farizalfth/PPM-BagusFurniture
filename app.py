@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, redirect, jsonify, flash
 from flask_mysqldb import MySQL
 
 app = Flask(__name__)
-app.secret_key = 'Luxury Watch Store'
+app.secret_key = 'Bagus Furniture'
 
 # cofigure databases
 app.config['MYSQL_HOST'] = 'localhost'
@@ -144,4 +144,4 @@ def seacrh_product():
     query = 'SELECT * FROM product WHERE name_product LIKE %s'
     cur.execute(query , (f"%{keyword}%",))
     search = cur.fetchall()
-    return render_template('product.html',search=search)    
+    return render_template('product.html',search=search) 
