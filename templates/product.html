@@ -1,18 +1,23 @@
 {% extends 'layouts/base.html' %}
-{% block title %} Bagus Furniture {% endblock %}
-{%block content%}
+{% block title %}Produk - Bagus Furniture{% endblock %}
+
+{% block content %}
 <section>
     <div class="container" style="margin-top: 150px;">
-        <div class="row">
+        <div class="row mb-3">
             <div class="col d-flex align-items-center justify-content-between">
-                <h3 class="text-dark">All Product</h3>
-                <form action="/add-product" method="get" class="d-flex" role="search">
-                    <button class="btn btn-outline-primary" type="submit">Add Product</button>
-                </form>
+                <h3 class="text-dark mb-0">Semua Produk</h3>
+                
+                {# Tombol ini hanya muncul jika admin yang login #}
+                {% if 'loggedin' in session and session.role == 'admin' %}
+                    <a href="{{ url_for('add_product') }}" class="btn btn-primary" role="button">Tambah Produk</a>
+                {% endif %}
             </div>
         </div>
-        <hr style="color: rgb(0, 0, 0);">
+        <hr>
     </div>
-    {%include 'layouts/component/card.html'%}
+
+    {# Memanggil file card.html untuk menampilkan semua produk #}
+    {% include 'layouts/component/card.html' %}
 </section>
-{%endblock%} 
+{% endblock %}

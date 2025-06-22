@@ -1,33 +1,23 @@
 {% extends 'layouts/base.html' %}
-{% block title%} Bagus Furniture {% endblock %}
+{% block title%}Bagus Furniture{% endblock %}
+
 {% block content %}
 
-<!-- SHORT DECRIPRION -->
+<!-- BAGIAN SAMBUTAN (SHORT DESCRIPTION) -->
 <section>
     <div class="container" style="margin-top: 120px;">
-        <div class="row">
+        <div class="row align-items-center">
             <div class="col-12 col-md-7">
-                <div class="d-flex">
-                    <div class="w-100">
-                        <div class="title mt-4">
-                            <h1>Selamat Datang di Bagus Furniture</h1>
-                            <h4>Investasi dalam Keabadian, Warisan dalam Setiap Serat Kayu</h4>
-                            <p>Furnitur sejati bukanlah sekadar benda, melainkan warisan yang berharga.
-                                Kami mengkhususkan diri pada perabot berkualitas pusaka (heirloom quality)
-                                yang dirancang untuk menantang waktu.Bagus Furniture berkomitmen untuk menggunakan 
-                                kayu solid terbaik dan teknik pengerjaan tangan yang telah teruji oleh generasi.
-                                Setiap meja, kursi, dan lemari kami adalah investasi dalam keindahan dan ketahanan,sebuah 
-                                cerita yang akan Anda wariskan. Bangun legasi keluarga Anda, dimulai dari perabot yang tepat.
-                            </p>
-                            <a href="/about" class="btn btn-outline-warning" role="button" aria-disabled="true">Watch More</a>  
-                        </div> 
-                    </div>
-                </div>   
+                {% if home_content and home_content.page_value %}
+                    {{ home_content.page_value | safe }}
+                {% else %}
+                    <div class="alert alert-warning">Konten Halaman Utama belum diatur dari Admin Panel.</div>
+                {% endif %}
             </div>
             <div class="col-12 col-md-5">
                 <div class="p-2 flex-shrink-1">
                     <div class="text-end">
-                        <img src="static/image/Logo Bagus F.png" class="rounded" alt="background hp" width="100%">
+                        <img src="{{ url_for('static', filename='image/Logo Bagus.png') }}" class="rounded" alt="Logo Bagus Furniture" width="100%">
                     </div> 
                 </div>
             </div>
@@ -35,37 +25,48 @@
     </div>
 </section>
 
-<!-- SERVICE -->
+<!-- BAGIAN LAYANAN (SERVICE) -->
 <section>
-    {%include 'layouts/component/service.html'%}
+    {% if service_content and service_content.page_value %}
+        {{ service_content.page_value | safe }}
+    {% else %}
+        <div class="container mt-5">
+            <div class="alert alert-warning">Konten Layanan belum diatur dari Admin Panel.</div>
+        </div>
+    {% endif %}
 </section>
 
-<!--  CARD PRODUCT PREVIEW -->
+<!-- BAGIAN PREVIEW PRODUK -->
 <section>
     <div class="container" style="margin-top: 100px;">        
-        <div class="row g-1">
-            <div class="col d-flex align-items-center justify-content-between">
-                <h3 class="text-dark">All Product</h3>
-                <form action="/seacrh-product" method="get" class="d-flex" role="search">
-                    <a href="/product" style="color: #e4bf45; text-decoration: none;">View More></a>
-                </form>
+        <div class="row g-4">
+            <div class="col-12 d-flex align-items-center justify-content-between">
+                <h3 class="text-dark">Produk Kami</h3>
+                <a href="{{ url_for('product') }}" style="color: #e4bf45; text-decoration: none;">Lihat Semua ></a>
             </div>
-            <hr class="mb-3" style="color: dark;">
-            {% for produk in produk[:4] %}
-                <div class="col-12 col-md-3">
-                    <div class="card shadow p-3 mb-5 bg-body-tertiary rounded" style="width: 100%;">
-                        <a href="/detail-produk/{{ produk[0] }}" style="text-decoration: none; color: black;">
-                        <img src="{{ produk[2] }}" class="card-img-top" alt="" width="50px">
-                        <div class="card-body" style="color: black; list-style-type: none;">
-                                <h5>{{produk[6]}}</h5>
-                                <h5 class="card-title" style="font-size: 17px;">{{ produk[1] }}</h5>
-                                <p class="card-text">Rp. {{ produk[3] | rupiah }}</p>
-                        </div>
+            <div class="col-12"><hr class="mb-3"></div>
+
+            {% for p in produk %}
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="card shadow-sm h-100">
+                        <a href="{{ url_for('detail_produk', id=p['id']) }}" style="text-decoration: none; color: black;">
+                            <img src="{{ p['image_url'] }}" class="card-img-top" alt="{{ p['name_product'] }}" style="height: 220px; object-fit: cover;">
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title" style="font-size: 1rem;">{{ p['name_product'] }}</h5>
+                                <p class="card-text fw-bold mt-auto">Rp. {{ p['price'] | rupiah }}</p>
+                            </div>
                         </a>
                     </div>
                 </div>   
+            {% else %}
+                 <div class="col-12">
+                    <div class="alert alert-secondary text-center">
+                        Belum ada produk untuk ditampilkan.
+                    </div>
+                </div>
             {% endfor %}
         </div>
     </div>
 </section>
+
 {% endblock %}

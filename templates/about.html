@@ -1,70 +1,15 @@
 {% extends 'layouts/base.html' %}
-{% block title %}About Us{% endblock %}
+{% block title %}About Us - Bagus Furniture{% endblock %}
 {% block content %}
 <section>
     <div class="container" style="margin-top: 140px;">
-        <div class="row">
-            <div class="col">
-                <!-- BAG -1  -->
-                <div class="d-flex">
-                    <div class="p-2 flex-shrink-1">
-                        <div class="text-end pt-5 pe-5">
-                            <img src="static/image/MejaTV2.jpg" class="rounded" alt="Luxury Watch">
-                        </div> 
-                    </div>
-                    <div class="p-2 w-100">
-                        <h2 style="color: #d4af37;">Bagus Furniture</h2>
-                        <p>Kami adalah penyedia solusi furnitur berkualitas untuk pelanggan yang mendambakan keindahan, kenyamanan, 
-                            dan fungsionalitas dalam hunian mereka.Bagus Furniture berkomitmen untuk menyediakan koleksi mebel dengan 
-                            desain terbaik, dibuat dari material pilihan dengan kualitas terjamin, harga yang kompetitif, serta pelayanan yang ramah dan profesional.
-                        </p>
-                        <h2 style="color: #d4af37;">Visi</h2> 
-                        <p>Menjadi pemimpin di industri furnitur dan mebel dengan menyediakan pengalaman belanja yang inspiratif, nyaman, dan terpercaya 
-                            bagi setiap pelanggan yang ingin mewujudkan hunian impian mereka.
-                        </p>   
-                        <h2 style="color: #d4af37;">Misi</h2>
-                        <p> Memberikan produk mebel dengan desain unggulan dan kualitas pengerjaan terbaik.
-                            Menyediakan layanan pelanggan yang cepat, responsif, dan memuaskan di setiap tahap.
-                            Menyajikan koleksi furnitur pilihan yang menjawab kebutuhan estetika dan fungsionalitas pelanggan kami.
-                        </p>
-                    </div>
-                </div>
-                <!-- BAG - 2 -->
-                <div class="d-flex">
-                    <div class="p-2 w-100">
-                        <h2 style="color: #d4af37;">Apa yang Membuat Kami Berbeda?</h2>
-                        <table class="table table-hover">
-                            <tbody>
-                                <tr>
-                                    <td>Kami menawarkan beragam gaya furnitur, mulai dari minimalis, industrial, hingga klasik, yang dibuat
-                                         dari material berkualitas seperti kayu jati solid, mahoni, dan metal premium. </td>
-                                </tr>
-                                <tr>
-                                    <td>Setiap produk yang kami tawarkan dijamin kualitasnya, dengan garansi konstruksi dan bahan yang 
-                                        memastikan ketahanan untuk pemakaian jangka panjang.</td>
-                                </tr>
-                                <tr>
-                                    <td>Dengan proses belanja yang mudah, metode pembayaran fleksibel, dan pengiriman aman yang disertai 
-                                        layanan perakitan profesional, kami memberikan kenyamanan di setiap langkah.</td>
-                                </tr>
-                                <tr>
-                                    <td>Tim konsultan desain kami siap membantu Anda mulai dari pemilihan produk hingga perencanaan tata ruang, 
-                                        memberikan solusi personal untuk setiap kebutuhan interior Anda.</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="p-2 flex-shrink-1">
-                        <div class="text-end pt-5 pe-5">
-                            <img src="static/image/LemariPajangan3.jpg" class="rounded" alt="Luxury Watch">
-                        </div> 
-                    </div>
-                </div>
-                <div class="service">
-                    {% include 'layouts/component/service.html' %}
-                </div>
+        {% if content and content.page_value %}
+            {{ content.page_value | safe }}
+        {% else %}
+            <div class="alert alert-warning">
+                Konten untuk halaman "About Us" belum diatur. Silakan login sebagai admin untuk mengisinya.
             </div>
-        </div>
+        {% endif %}
     </div>
 </section>
 {% endblock %}

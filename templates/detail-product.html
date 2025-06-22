@@ -1,46 +1,68 @@
 {% extends 'layouts/base.html' %}
-{% block title %}Detail Product{% endblock %}
+{% block title %}{{ detail.name_product if detail else 'Detail Produk' }} - Bagus Furniture{% endblock %}
 
 {% block content %}
-<section>
-    <div class="container" style="margin-top: 150px;">
-        <div class="row border border-2 rounded">
-            <div class="col-12 col-md-6">
-                <div class="p-2">
-                    <div class="text-center">
-                        <img src="{{ detail[2] }}" class="rounded" alt="background hp" width="70%">
+<div class="container" style="margin-top: 120px;">
+    {# Blok 'if detail' ini penting untuk mencegah error jika produk tidak ditemukan #}
+    {% if detail %}
+        <div class="row">
+            <!-- Kolom untuk Gambar Produk Utama -->
+            <div class="col-md-7">
+                {# --- PERBAIKAN DI SINI: Menambahkan '/' di depan --- #}
+                <img src="/{{ detail['image_url'] }}" class="img-fluid rounded shadow-sm" alt="{{ detail['name_product'] }}">
+            </div>
+
+            <!-- Kolom untuk Informasi Produk Utama -->
+            <div class="col-md-5">
+                <h1 style="font-weight: 600;">{{ detail['name_product'] }}</h1>
+                <p class="text-muted">Kategori: <span class="badge bg-secondary">{{ detail['name_category'] }}</span></p>
+                <h2 class="my-4" style="color: #d4af37; font-size: 2.5rem;">Rp. {{ detail['price'] | rupiah }}</h2>
+                
+                <div class="card bg-light border-0 mt-3">
+                    <div class="card-body">
+                        <h5 class="card-title">Deskripsi</h5>
+                        <p class="card-text">
+                            Produk unggulan dari Bagus Furniture, dirancang dengan material pilihan untuk daya tahan dan keindahan maksimal. Cocok untuk melengkapi interior modern maupun klasik Anda.
+                        </p>
+                        <p class="card-text">Stok Tersedia: <strong>{{ detail['in_stok'] }}</strong></p>
                     </div>
                 </div>
-            </div>
-            <div class="col-12 col-md-6 d-flex">
-                <div class="p-2 w-100">
-                    <div class="title mt-4">
-                        <h3>{{ detail[1] }}</h3>
-                        <h5>Harga : Rp.{{ detail[3] | rupiah }}</h5>
-                        <p>Stok  : {{'Tidak Tersedia' if produk[5] == True else 'Tersedia'}}</p>
-                        <p>Detail</p>
-                        <p class="lh-1">{{ detail[6] }}</p>
-                    </div>
+                
+                <div class="d-grid gap-2 mt-4">
+                    {# PERBAIKAN KECIL: Menambahkan nama produk ke link WA agar lebih informatif #}
+                    <a href="https://wa.me/6281327149583?text=Halo,%20saya%20tertarik%20dengan%20produk%20{{ detail['name_product']|urlencode }}" class="btn btn-success btn-lg" target="_blank">Hubungi via WhatsApp untuk Membeli</a>
                 </div>
             </div>
-        </div>    
-    </div>
-</section>
-<!-- PRODUK LAINNYA -->
-<section>
-    <div style="margin-top: 100px;">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <h2 class="mb-3">Produk Lainnya</h2>
-                    <hr class="mb-3" style="color: dark;">
-                </div>
-            </div>    
         </div>
-    </div>
-</section>
-<!-- CARD PRODUK -->
-<section>
-    {% include 'layouts/component/card.html' %}
-</section>
-{% endblock %}
+
+        <!-- Bagian Rekomendasi Produk Lain -->
+        <hr class="my-5">
+        <div class="row">
+            <div class="col-12">
+                <h3 class="mb-4">Anda Mungkin Juga Suka</h3>
+            </div>
+            {% for p in produk %}
+                <div class="col-6 col-md-3">
+                    <div class="card shadow-sm h-100">
+                        <a href="{{ url_for('detail_produk', id=p['id']) }}" class="text-decoration-none text-dark">
+                            {# --- PERBAIKAN JUGA DI SINI: Menambahkan '/' di depan --- #}
+                            <img src="/{{ p['image_url'] }}" class="card-img-top" alt="{{ p['name_product'] }}" style="height: 200px; object-fit: cover;">
+                            <div class="card-body">
+                                <h6 class="card-title">{{ p['name_product'] }}</h6>
+                                <p class="card-text fw-bold">Rp. {{ p['price'] | rupiah }}</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        {# Blok ini akan tampil jika produk dengan ID tersebut tidak ditemukan #}
+        <div class="alert alert-danger text-center">
+            <h2>Produk Tidak Ditemukan</h2>
+            <p>Produk yang Anda cari mungkin telah dihapus atau URL tidak valid.</p>
+            <a href="{{ url_for('product') }}" class="btn btn-primary">Kembali ke Halaman Produk</a>
+        </div>
+    {% endif %}
+</div>
+{% endblock %} 

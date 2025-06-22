@@ -1,43 +1,15 @@
+{# KONTEN INI SEKARANG DIKELOLA DARI ADMIN PANEL #}
+{# Anda bisa menghapus isi file ini atau membiarkannya, karena tidak akan digunakan secara langsung lagi #}
+{# Route /service akan menggunakan file ini sebagai template dasar #}
+{% extends 'layouts/base.html' %}
+{% block title %}Layanan Kami{% endblock %}
+{% block content %}
 <div class="container" style="margin-top: 100px;">
-    <div class="row">
-        <div class="col">
-            <h2 class="text-center mb-5" style="color: #535353;">Layanan Kami</h2>
-            <table class="table table-hover" style="background: linear-gradient(white, #f5f5f5);">
-                <thead>
-                    <tr style="background-color: #333;">
-                        <th scope="col-2">No</th>
-                        <th scope="col-3">Layanan</th>
-                        <th scope="col-5">Deskripsi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>    
-                        <th scope="row">1</th>
-                        <td>Penjualan Furniture Berkualitas</td>
-                        <td>Menyediakan koleksi lengkap mebel untuk setiap ruangan: set ruang tamu,
-                            meja makan, lemari, tempat tidur, hingga furnitur kantor, dengan berbagai pilihan 
-                            desain dari klasik, modern, hingga minimalis.</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Garansi Kualitas & Perbaikan</td>
-                        <td>Setiap produk kami dilindungi garansi resmi yang mencakup cacat produksi dan kerusakan material. 
-                            Kami menyediakan layanan perbaikan atau penggantian untuk menjamin kepuasan jangka panjang Anda.</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>Konsultasi Desain & Tata Ruang</td>
-                        <td>Bingung memilih mebel yang pas? Tim ahli kami siap membantu mulai dari perencanaan tata letak, pemilihan 
-                            gaya, hingga rekomendasi produk yang sesuai dengan anggaran dan selera Anda, tanpa biaya tambahan.</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">4</th>
-                        <td>Pengiriman & Pemasangan Profesional</td>
-                        <td>Kami memastikan setiap produk tiba di rumah Anda dengan aman dan tepat waktu. Tim kami juga akan membantu proses 
-                            perakitan dan penempatan furnitur, sehingga Anda bisa langsung menikmati ruang baru Anda.</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
+    {% if content and content.page_value %}
+        {{ content.page_value | safe }}
+    {% else %}
+        <h2 class="text-center">Layanan Kami</h2>
+        <p class="text-center">Konten layanan belum diatur. Silakan atur dari Admin Panel.</p>
+    {% endif %}
 </div>
+{% endblock %}

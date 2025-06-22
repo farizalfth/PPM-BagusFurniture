@@ -1,22 +1,36 @@
-<nav class="navbar navbar-expand-lg" style="background-color: #f4f4f4; border-bottom: 1px solid #cdcbcb; display: flex; position: fixed; right: 0; left: 0; top: 0; z-index: 1;">
+<nav class="navbar navbar-expand-lg fixed-top" style="background-color: #f4f4f4; border-bottom: 1px solid #cdcbcb;">
   <div class="container-fluid">
-    <a class="navbar-brand fw-bold ms-3" style="color: #e4bf45;" href="/">
-      Bagus Furniture
-    </a>
+    <a class="navbar-brand fw-bold ms-3" style="color: #e4bf45;" href="/">Bagus Furniture</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ms-auto mb-3 mb-lg-0">
-        <li class="nav-item me-3">
-          <a class="nav-link active text-dark" aria-current="page" href="/">Home</a>
-        </li>
-        <li class="nav-item me-3">
-          <a class="nav-link text-dark" href="/about">About</a>
-        </li>
-        <li class="nav-item me-3">
-          <a class="nav-link text-dark" href="/product">Product</a>
-        </li>
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item me-3"><a class="nav-link text-dark" href="/">Home</a></li>
+        <li class="nav-item me-3"><a class="nav-link text-dark" href="/about">About</a></li>
+        <li class="nav-item me-3"><a class="nav-link text-dark" href="/product">Product</a></li>
+        
+        {% if 'loggedin' in session %}
+          {% if session.role == 'admin' %}
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle fw-bold text-primary" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Admin Panel
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li><a class="dropdown-item" href="{{ url_for('admin_dashboard') }}">Dashboard</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="{{ url_for('add_product') }}">Manage Products</a></li>
+              <li><a class="dropdown-item" href="{{ url_for('manage_home') }}">Manage Home</a></li>
+              <li><a class="dropdown-item" href="{{ url_for('manage_about') }}">Manage About</a></li>
+              <li><a class="dropdown-item" href="{{ url_for('manage_layanan') }}">Manage Layanan</a></li>
+              <li><a class="dropdown-item" href="{{ url_for('manage_footer') }}">Manage Footer</a></li>
+            </ul>
+          </li>
+          {% endif %}
+          <li class="nav-item me-3"><a class="nav-link text-danger" href="{{ url_for('logout') }}">Logout ({{ session.username }})</a></li>
+        {% else %}
+          <li class="nav-item me-3"><a class="nav-link fw-bold" href="{{ url_for('login') }}">Login</a></li>
+        {% endif %}
       </ul>
     </div>
   </div>
